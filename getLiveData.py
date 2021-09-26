@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import schedule
+import time
 
 URL_ = "https://uk.indeed.com/jobs?q=python+developer&l=London,+Greater+London&start=0"
 
@@ -74,8 +76,16 @@ def send_message_to_telegram(job_data_list):
         requests.get(base_url)
 
 
-s = extract(0)
-job_list = transform(s)
-send_message_to_telegram(job_list)
+def main():
+    s = extract(0)
+    job_list = transform(s)
+    send_message_to_telegram(job_list)
+
+
 # for item in job_list:
 #     print(item)
+schedule.every(10).minutes.do(main)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+    print("\n")
