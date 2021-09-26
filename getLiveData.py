@@ -74,7 +74,7 @@ def send_message_to_telegram(job_data_list):
                    f'=-473759634&text={text}'
         # & parse_mode = HTML
         requests.get(base_url)
-        print("\n")
+    print("\n")
 
 def main():
     s = extract(0)
@@ -84,7 +84,8 @@ def main():
 
 # for item in job_list:
 #     print(item)
-schedule.every(10).minutes.do(main)
+# schedule.every(1).minute.do(main)
+schedule.every(10).seconds.do(main)
 while True:
     schedule.run_pending()
     time.sleep(1)
