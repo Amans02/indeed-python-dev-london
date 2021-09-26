@@ -85,7 +85,7 @@ def main():
 # for item in job_list:
 #     print(item)
 # schedule.every(1).minute.do(main)
-schedule.every(10).seconds.do(main)
+schedule.every(10).minutes.do(main)
 while True:
     schedule.run_pending()
     time.sleep(1)
